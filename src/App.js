@@ -65,6 +65,7 @@ function Search() {
       let songList = [];
       for (let i = 0; i < artistName.response.songs.length; i++) {
         songList.push({
+          id: artistName.response.songs[i].id,
           coverArt: artistName.response.songs[i].header_image_url,
           title: artistName.response.songs[i].title,
           release: artistName.response.songs[i].release_date_for_display
@@ -81,7 +82,7 @@ function Search() {
       <Container className='songContainer w-100'>
         {artistName.response && storeSongs().map((songsinfo) => {
           return (
-            <ArtistForm coverArt={songsinfo.coverArt} title={songsinfo.title} release={songsinfo.release} />)}
+            <ArtistForm key={songsinfo.id} coverArt={songsinfo.coverArt} title={songsinfo.title} release={songsinfo.release}  />)}
         )}
         </Container>
     </>
@@ -100,7 +101,7 @@ function SearchedArtist(props) {
 
 function ArtistForm(props) {
   return (
-    <Row className='songs'>
+    <Row className='songs' key={props.id}>
       <Col><img src={props.coverArt} alt="Artist Song Cover Art" /></Col>
       <Col>{props.title}</Col>
       <Col>{props.release}</Col>
