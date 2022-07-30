@@ -9,3 +9,7 @@
     box-sizing: border-box;
     font-size: larger;
 }
+.songContainer{
+    display: flex;
+    max-width: 50%;
+}
