@@ -3,10 +3,10 @@ const cio = require('cheerio-without-node-native');
 
 export function Lyrics(props) {
     let [data, setData] = useState({})
-    useEffect(() => {fetch('https://thingproxy.freeboard.io/fetch/' + props.url, { mode: 'cors' })
+    useEffect(() => fetch('https://thingproxy.freeboard.io/fetch/' + props.url, { mode: 'cors' })
         .then(response => (response.text()))
         .then((html) =>{ setData(html)})
-}, [props.url]
+        , [props.url]
     )
     const $ = cio.load(data);
     let lyrics = $('div[class   ="lyrics"]').text().trim();
