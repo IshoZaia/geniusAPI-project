@@ -19,7 +19,7 @@ export default function App() {
 
       <Routes>
         <Route path="/" element={<Search />} />
-        <Route path="lyrics" element={<Lyrics url=""/>}/>
+        <Route path="lyrics/:path" element={<Lyrics url=""/>}/>
         <Route path="song/:id" element={<Song />} />
       </Routes>
     </BrowserRouter>
@@ -93,7 +93,7 @@ function Search() {
         coverArt: artistName.response.songs[i].header_image_url,
         title: artistName.response.songs[i].title,
         release: artistName.response.songs[i].release_date_for_display,
-        lyrics: artistName.response.songs[i].url
+        lyrics: artistName.response.songs[i].path
       }
       )
     }
@@ -138,6 +138,7 @@ function Search() {
               release={songsinfo.release}
               sample={songsinfo.sample}
               songLink={songsinfo.id}
+              lyrics={songsinfo.lyrics}
                />)
         }
         )}
@@ -170,7 +171,7 @@ function ArtistForm(props) {
       </ListGroup>
       <Card.Body>
         <Link id="button" className="btn btn-dark" to={`song/${props.songLink}`} >Songs</Link> {" "}
-        <Card.Link id="button" className="btn btn-dark" to={"lyrics"}>Lyrics</Card.Link>
+        <Link id="button" className="btn btn-dark" to={`lyrics${props.lyrics}`}>Lyrics</Link>
       </Card.Body>
     </Card>
   )
